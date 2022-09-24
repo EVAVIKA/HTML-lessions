@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;600;700;800&display=swap");
+
+@mixin align-center {
+  display: flex;
+  align-items: flex-end;
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+input[type="button"] {
+    transition:0.2s;
+    &:hover{
+        cursor: pointer;
+        filter: blur(1px);
+    }
+}
+
+#top-header {
+  @include align-center();
+  justify-content: space-between;
+  padding: 25px 230px 0 230px;
+}
+
+.btn-search {
+  $b-r: 3px;
+  border-top-left-radius: $b-r;
+  border-bottom-left-radius: $b-r;
+  width: 87px;
+}
+
+.height-browse * {
+    height: 38px;
+    border: 1px solid #E6E6E6;
+    padding: 0;
+}
+
+.input-browse {
+    height: 36px;
+    width: 317px;
+}
+
+.search-container {
+    margin-left: 30px;
+}
+
+.border-none {
+  border: none;
+}
+
+.btn-my_account {
+  background-color: #f16d7f;
+  color: white;
+  width: 130px;
+  height: 38px;
+  margin-left: 23px;
+}
+
+.align-center {
+  @include align-center();
+
+}
+
+.nav {
+    margin: 30px auto 0 auto;
+    width: fit-content;
+    * {
+        font-weight: bold;
+        font-size: 10px;
+        color: black;
+        text-decoration: none;
+        transition: 0.2s;
+        &:hover {
+            color: gray;
+        }
+    }
+    *:not(:last-child) {
+        margin-right: 55px;
+    }
+}
