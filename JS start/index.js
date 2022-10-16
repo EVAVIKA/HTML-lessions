@@ -1,6 +1,14 @@
-window.addEventListener("DOMContentLoaded", main);
+includeScript('./objects.js');
+includeScript('./task.js');
+window.addEventListener("DOMContentLoaded", () => {
+    const timeout = setTimeout(() => {
+        main();
+        clearTimeout(timeout);
+    }, 10);
+});
 
 function main() {
+
     console.log('Hello world');
 
     let userinfo1 = {};
@@ -15,14 +23,14 @@ function main() {
     };
 
     console.log(userinfo1, userinfo2);
-    for (let a = 0; a <= 10; a++) {
-        checkNumber(a);
-    }
+    // for (let a = 0; a <= 10; a++) {
+    //     checkNumber(a);
+    // }
     //logic(userinfo1.age);
 }
 
-function checkNumber (n) {
-    switch(n) {
+function checkNumber(n) {
+    switch (n) {
         case 0:
             console.log('Это число 0');
             break;
@@ -35,4 +43,10 @@ function checkNumber (n) {
         default:
             console.log('Я отрабатываю по-умолчанию');
     }
+}
+
+function includeScript(path) {
+    const scrElement = document.createElement('script'); // создать элемент
+    scrElement.setAttribute('src', path); // установить атрибут src из path
+    document.head.appendChild(scrElement); // добавить созданный элемент в документ, голову
 }
