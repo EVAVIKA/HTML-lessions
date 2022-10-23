@@ -1,5 +1,6 @@
 includeScript('./objects.js');
 includeScript('./task.js');
+includeScript('./shop.js');
 window.addEventListener("DOMContentLoaded", () => {
     const timeout = setTimeout(() => {
         main();
@@ -27,6 +28,7 @@ function main() {
     //     checkNumber(a);
     // }
     //logic(userinfo1.age);
+    OnStart();
 }
 
 function checkNumber(n) {
