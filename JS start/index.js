@@ -1,11 +1,14 @@
 includeScript('./objects.js');
 includeScript('./task.js');
 includeScript('./shop.js');
+includeScript('./oop.js');
+includeScript('./store.js');
+includeScript('./async.js')
 window.addEventListener("DOMContentLoaded", () => {
     const timeout = setTimeout(() => {
         main();
         clearTimeout(timeout);
-    }, 10);
+    }, 500);
 });
 
 function main() {
@@ -45,6 +48,60 @@ function checkNumber(n) {
         default:
             console.log('Я отрабатываю по-умолчанию');
     }
+}
+
+function primeNumber() {
+    const iteratePrev = () => {
+        k = 2;
+        while (k < n) {
+            if (n % k === 0) return false;
+            k++;
+        }
+        return true;
+    }
+    let n = 2;
+    let res = [];
+    while (n <= 100000) {
+        if(iteratePrev())
+            res.push(n);
+        n++;
+    }
+    return res;
+}
+
+function pyramid() {
+    // const multiplyChar = (char, mValue) => {
+    function multiplyChar(char, mValue) {
+        let res = '';
+        for(let i = 1; i <= mValue; i++) {
+            res += char;
+        }
+        return res;
+    }
+    let n = 20;
+    let res = '';
+    for (let a = 0; a < n; a++) {
+        let row = multiplyChar('x', a + 1);
+        res += row + '\n';
+        console.log(row);
+    }
+    return res;
+}
+
+String.prototype.reverse = function() {
+    return this.split('').reverse().join('');
+}
+
+function reverseReq(str = 'asdasd') {
+    let res = '';
+    function req(i, end) {
+        if(i >= end) return;
+        req(i+1, end); // переход к сл. символу
+        res += str[i]; // запиши символ
+    }
+    let len = str.length;
+    req(0, len);
+    return res;
 }
 
 function includeScript(path) {

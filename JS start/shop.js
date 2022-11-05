@@ -5,15 +5,27 @@ function OnStart() {
     btnBuy = document.querySelector('#btn-buy');
     container = document.querySelector('.container');
     initHandlers();
+
+
+    const goods = [
+        { title: 'Shirt', price: 150, img: 'https://avatars.mds.yandex.net/get-mpic/4901709/img_id9176866033113156252.jpeg/orig' },
+        { title: 'Socks', price: 50, img: 'https://oir.mobi/uploads/posts/2021-04/1619807659_10-oir_mobi-p-malenkii-barashek-zhivotnie-krasivo-foto-10.jpg' },
+        { title: 'Jacket', price: 350 },
+        { title: 'Shoes', price: 250 },
+    ];
+
+    goods.forEach((good) => {
+        AddGood(good.title, good.price, good.img);
+    });
 }
 
-function GetItem(name = "Shon", price = "666") {
+function GetItem(name = "Shon", price = "666", imgSrc = 'https://st12.stpulscen.ru/images/product/201/309/387_big.png') {
     const item = document.createElement('div');
     item.classList.add('item');
 
     const img = document.createElement('img');
     img.classList.add('item-img');
-    img.src = 'https://oir.mobi/uploads/posts/2021-04/1619807659_10-oir_mobi-p-malenkii-barashek-zhivotnie-krasivo-foto-10.jpg';
+    img.src = imgSrc;
     img.alt = 'Барашек';
 
     const descr = document.createElement('div');
@@ -40,6 +52,10 @@ function initHandlers() {
 }
 
 function OnAdd(event) {
-    const item = GetItem();
+    AddGood();
+}
+
+function AddGood(title, price, img) {
+    const item = GetItem(title, price, img);
     container.appendChild(item);
 }
