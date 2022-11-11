@@ -81,14 +81,14 @@
         </p>
       </div>
       <div class="catalog-content">
-        <div v-for="i in 4" class="catalog-content__card">
-          <img v-bind:src="items[i-1].img" class="catalog-content__card-img">
+        <div v-for="item in items.slice(0,4)" class="catalog-content__card">
+          <img v-bind:src="item.img" class="catalog-content__card-img">
           <div class="catalog-content__card-descr">
             <div class="catalog-content__card-descr__name">
-              {{ items[i-1].name }}
+              {{ item.name }}
             </div>
             <div class="catalog-content__card-descr__price">
-              {{ items[i-1].price }}
+              {{ item.price }}
             </div>
           </div>
         </div>
