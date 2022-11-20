@@ -23,7 +23,7 @@
                 </div>
             </aside>
             <nav class="nav">
-                <a href="#">HOME</a>
+                <a href="/index.html">HOME</a>
                 <a href="#">MEN</a>
                 <a href="#">WOMEN</a>
                 <a href="#">KIDS</a>
@@ -43,13 +43,62 @@
                     <a class="catalog_links__link" href="#">NEW ARRIVALS</a>
                 </div>
             </div>
-            <div>
+            <div class="cart__nav">
                 <div class="cart__text-nav">
                     <h3 class="product_nav">PRODUCT DETAILS</h3>
                     <h3 class="price_nav">UNITE PRICE</h3>
                     <h3 class="qua_nav">QUANTITY</h3>
                     <h3 class="shipp_nav">SHIPPING</h3>
                 </div>
+                <hr class="hr_nav">
+                <div v-for="item in myCart" class="prod__nav">
+                    <img v-bind:src="item.img" class="prod__nav-img">
+                    <div class="obj__nav">
+                        <h4 class="obj__nav-ts">
+                            {{item.name}}
+                        </h4>
+                        <p>Color: Red</p>
+                        <p>Size: Xll </p>
+                    </div>
+                    <div class="nav-price__obj">
+                        <p class="nav__price-obj">
+                            {{item.price}}
+                        </p>
+                        <input class="nav_price_un" type="text" placeholder="Amount" />
+                        <p class="nav_free">FREE</p>
+                    </div>
+                </div>
+                <hr class="hr_nav">
+                <!-- <div class="prod__nav">
+                    <img src="./res/Product Image-2.png" alt="#">
+                    <div class="obj__nav">
+                        <h4 class="obj__nav-ts">MANGO PEOPLE T-SHIRT</h4>
+                        <p>Color: Red</p>
+                        <p>Size: Xll </p>
+                    </div>
+                    <div class="nav-price__obj">
+                        <p class="nav__price-obj">150</p>
+                        <input class="nav_price_un" type="text" placeholder="Amount" />
+                        <p class="nav_free">FREE</p>
+                        <p class="nav__price-obj-full">300</p>
+                    </div>
+                </div>
+                <hr class="hr_nav">
+                <div class="prod__nav">
+                    <img src="./res/Product Image.png" alt="#">
+                    <div class="obj__nav">
+                        <h4 class="obj__nav-ts">MANGO PEOPLE T-SHIRT</h4>
+                        <p>Color: Red</p>
+                        <p>Size: Xll </p>
+                    </div>
+                    <div class="nav-price__obj">
+                        <p class="nav__price-obj">150</p>
+                        <input class="nav_price_un" type="text" placeholder="Amount" />
+                        <p class="nav_free">FREE</p>
+                        <p class="nav__price-obj-full">300</p>
+                    </div>
+                </div>
+                <hr class="hr_nav"> -->
             </div>
             <div class="shopping_cart">
                 <input class="btn-clear_cart" type="button" value="CLEAR SHOPPING CART" />
@@ -172,6 +221,8 @@
             </div>
         </footer>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="cart.js"></script>
 </body>
 
 </html>

@@ -23,6 +23,10 @@ $bgcolor_pink: #f16d7f;
     }
 }
 
+body {
+    overflow-x: hidden
+}
+
 #top-header {
     @include align();
     justify-content: space-between;
@@ -128,36 +132,103 @@ $bgcolor_pink: #f16d7f;
 .catalog_links__link {
     text-decoration: none;
     color: #636363;
+
     &:hover {
         color: $bgcolor_pink;
         font-weight: bold;
+
         &:not(:last-child)::after {
             color: #636363;
             font-weight: normal;
         }
     }
+
     &:not(:last-child)::after {
         content: " /";
     }
 }
 
+.cart__nav {
+    display: grid;
+}
+
 .cart__text-nav {
     display: flex;
-    justify-content: space-between;
     font-size: 13px;
     margin-top: 87px;
 }
 
+.prod__nav {
+    display: flex;
+    margin-top: 20px;
+}
+
 .product_nav {
-    margin-right: 586px;
+    width: 100%;
 }
 
-.price_nav {
- margin-right: 250px;
+.prod__nav-img {
+    width: 100px;
+    height: 115px;
 }
 
-.qua_nav {
-    margin-right: 250px;
+.price_nav,
+.qua_nav,
+.shipp_nav
+ {
+   min-width: 185px;
+   text-align: left;
+}
+
+.hr_nav {
+    width: 1160px;
+    height: 1px;
+    margin-top: 19px;
+    color: #E2E2E2;
+}
+
+
+.obj__nav {
+    display: grid;
+    margin-left: 20px;
+}
+
+.obj__nav-ts {
+    margin-bottom: 33px;
+    font-size: 13px;
+}
+
+.nav-price__obj {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.nav__price-obj {
+    margin-left: 335px;
+    &::before {
+        content: '$';
+    }
+}
+
+.nav_price_un {
+    border-color: #EAEAEA;
+    width: 60px;
+    height: 30px;
+    margin-left: 120px;
+}
+
+.nav_free {
+    margin-left: 150px;
+    font-size: 13px;
+}
+
+.nav__price-obj-full {
+    margin-left: 165px;
+    &::before {
+        content: '$';
+    }
 }
 
 .shopping_cart {
@@ -247,8 +318,7 @@ $bgcolor_pink: #f16d7f;
 
 .total__text {
     display: grid;
-    justify-content: right;
- 
+    text-align: right;
     margin-top: 36px;
 }
 
@@ -263,6 +333,7 @@ $bgcolor_pink: #f16d7f;
     color: #4A4A4A;
     margin-bottom: 12px;
     margin-right: 36px;
+
     &::after {
         padding-left: 10px;
         content: '$900';
@@ -280,6 +351,7 @@ $bgcolor_pink: #f16d7f;
 .total__grand {
     margin-right: 36px;
     margin-bottom: 21px;
+
     &::after {
         color: $bgcolor_pink;
         padding-left: 10px;

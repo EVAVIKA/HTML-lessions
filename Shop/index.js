@@ -40,22 +40,31 @@ const items = [
         price: 1000,
     },
 ];
+items.forEach((e, i) => e.id = i);
 let isShowedAllItems = false;
+
+const cart = [];
+
 const app = new Vue({
     el: '#app',
     data: {
         items,
     },
     methods: {
-        browseAllClickHandler() {
+        browseAllClickHandler(event) {
+            const thisElement = event.srcElement;
+            const catalog = document.querySelector('.catalog-content');
             if (isShowedAllItems) {
-                // убираем лишнее
+                thisElement.setAttribute('value', 'Browse All Product');
+                const additional = catalog.querySelectorAll('.additional_card');
+                for(let elem of additional) {
+                    elem.remove();
+                }
                 isShowedAllItems = false;
             } else {
-                const catalog = document.querySelector('.catalog-content');
                 for (let i = 4; i < items.length; i++) {
                     const itemHTML = `
-                <div class="catalog-content__card">
+                <div data-id="${items[i].id}" class="catalog-content__card additional_card">
                 <img src="${items[i].img}" class="catalog-content__card-img">
                 <div class="catalog-content__card-descr">
                     <div class="catalog-content__card-descr__name">
@@ -67,10 +76,27 @@ const app = new Vue({
                     </div>
                 </div>`;
                     catalog.innerHTML += itemHTML;
+
                 }
                 isShowedAllItems = true;
+                thisElement.setAttribute('value', 'Show Less')
+                // поменять у кнопки value (текст)
             }
-        }
+        },
+        itemCardClickHandler(event) {
+            const itemId = event.srcElement?.dataset?.id ?? -1;
+            // 1. найти по id товар в items
+            // 2. добавить найденный товар в cart, но только если этого товара в cart еще нет, если есть, то не добавляй
+            const item = items.find((e) => e.id == itemId);
+            const cartItem = cart.find((e) => e.id == itemId);
+            if (cartItem) {
+                return
+            }
+            cart.push(item);
+            sessionStorage.setItem('my_cart', JSON.stringify(cart));
+            // прочитай про sessionStorage и localStorage
+            // прочитай про JSON.parse и JSON.stringify
+        },
     }
 });
 
