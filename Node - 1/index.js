@@ -1,42 +1,68 @@
 let Datastore = require('nedb');
 let _ = require('lodash');
+let serv = require('./serv');
 let db = new Datastore({ filename: './DataBase', autoload: true });
-let obj = {
-    _id: 'today_3',
-    number: 11,
-    month: 01,
-    year: 1999,
-}
 
-// UpdateItem({_id: obj['_id']}, obj, {}, function(){
-//     console.log('Документ обновлен.');
+let rawData = [
+    {
+        name: 'Vika',
+        day: 27,
+        testArr: [1, 'pupu', { a: 1 }],
+    },
+    {
+        name: 'Vova',
+        day: 26,
+        testArr: [1, 'pupu', { a: 1 }],
+    },
+    {
+        name: 'Maria',
+        day: 24,
+        testArr: [1, 'pupu', { a: 1 }],
+    },
+    {
+        name: 'Kate',
+        day: 25,
+        testArr: [1, 'pupu', { a: 1 }],
+    },
+    {
+        name: 'Mary',
+        day: 23,
+        testArr: [1, 'pupu', { a: 1 }],
+    },
+    {
+        name: 'Oleg',
+        day: 20,
+        testArr: [1, 'pupu', { a: 1 }],
+    },
+]
+
+// db.find({
+//     $or: [{
+//         name: /Vova/
+//     },
+//     {
+//         day: {
+//             $lt: 26,
+//             $gt: 23,
+//         }
+//     }]
+// }, function (err, docs) {
+//     if (err) throw Error('Cannot find: ' + err);
+//     for (let doc of docs) {
+//         console.log(JSON.stringify(doc));
+//     }
 // });
 
-// UpadteItemWithRemove({_id: obj['_id']}, obj, {}, function(){
-//     console.log('Документ обновлен.');
-// });
-
-function UpdateItem(query, doc, options = {}, callback) {
-    const docCopy = _.cloneDeep(doc);
-    delete docCopy["_id"];
-    db.update(query, { $set: docCopy }, options, function (err, numReplaced) {
-        if (err) throw Error("Ошибка: " + err);
-        if (numReplaced === 0) {
-            db.insert(doc, function (err, newDoc) {
-                if (err) throw Error("Ошибка: " + err);
-                callback();
-            });
-        } else callback();
-    });
-}
-
-function UpadteItemWithRemove(query, doc, options = {}, callback) {
-    db.remove(query, options, function(err, count) {
-        db.insert(doc, function(err, newDoc) {
-            if(err) throw Error("Ошибка: " + err);
-            callback();
-        });
-    })
-}
-
-db.persistence.setAutocompactionInterval(2000);
+db.remove({
+    $not: {
+        $or: [{
+            name: /Vova/
+        },
+        {
+            name: /Vika/
+        }]
+    }
+}, { multi: true }, function (error, count) {
+    if (error) throw Error("Ошибка " + error);
+    console.log('База очищена');
+})

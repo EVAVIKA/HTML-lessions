@@ -1,0 +1,16 @@
+.feedback_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.email-feedback_form {
+  margin-bottom: 10px;
+}
+
+.text-feedback_form {
+  margin-bottom: 10px;
+}/*# sourceMappingURL=main.css.map */
